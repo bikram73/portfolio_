@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikram Manna - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;  /* Bright blue */
+            --secondary-color: #2ecc71;  /* Vibrant green */
+            --background-dark: #121212;  /* Deep dark background */
+            --background-light-dark: #1e1e1e;  /* Slightly lighter dark background */
+            --text-light: #e0e0e0;  /* Light text color */
+            --accent-color: #e74c3c;  /* Vibrant red */
+            --border-color: #333;  /* Dark border color */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--background-dark);
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            gap: 40px;
+        }
+        .header-content {
+            flex: 1;
+            text-align: left;
+        }
+        .header-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .header-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .profile-image-container {
+            flex: 0 0 350px;
+        }
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+        .profile-circle {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        .section {
+            margin: 50px 0;
+            background-color: var(--background-light-dark);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .skill-category, #languages .skill-category {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .skill-category ul, #languages .skill-category ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            display: inline-block;
+        }
+        .skill-category ul li, #languages .skill-category ul li {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .skill-inline-logo {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        .project, .experience, .education {
+            background-color: var(--background-dark);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+            text-align: center;
+        }
+        .project:hover, .experience:hover, .education:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .project h3, .experience h3, .education h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .project p, .experience p, .education p {
+            color: var(--text-light);
+        }
+        .project ul, .experience ul, .education ul {
+            color: var(--text-light);
+            padding-left: 20px;
+        }
+        .project ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        #contact {
+            background-color: var(--background-light-dark);
+            text-align: center;
+        }
+        #contact p {
+            color: var(--text-light);
+            margin: 10px 0;
+        }
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        @media (max-width: 1024px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-content, .profile-image-container {
+                flex: 1;
+                width: 100%;
+            }
+            .header-content {
+                text-align: center;
+            }
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                width: 95%;
+            }
+        }
+        
+        /* Navigation Box Styles */
+        .navigation-box {
+            display: flex;
+            justify-content: center;
+            background-color: var(--background-light-dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .navigation-box ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navigation-box ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .navigation-box ul li a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* GitHub Profile Button */
+        .github-profile-btn {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4078c0, #6cc644);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .github-profile-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Navigation Box Styles with Enhanced Clarity */
+        /* .navigation-box {
+            display: flex;
+            justify-content: center;
+            background-color: var(--background-light-dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .navigation-box ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navigation-box ul li a {
+            position: relative;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            display: inline-block;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .navigation-box ul li a:hover {
+            transform: translateY(-5px);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .navigation-box ul li:nth-child(1) a {
+            border-color: #ff4757;
+            color: #ff4757;
+        }
+        .navigation-box ul li:nth-child(1) a:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+        }
+        
+        .navigation-box ul li:nth-child(2) a {
+            border-color: #0984e3;
+            color: #0984e3;
+        }
+        .navigation-box ul li:nth-child(2) a:hover {
+            background: linear-gradient(135deg, #48dbfb, #0984e3);
+        }
+        
+        .navigation-box ul li:nth-child(3) a {
+            border-color: #16a085;
+            color: #16a085;
+        }
+        .navigation-box ul li:nth-child(3) a:hover {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+        }
+        
+        .navigation-box ul li:nth-child(4) a {
+            border-color: #8e44ad;
+            color: #8e44ad;
+        }
+        .navigation-box ul li:nth-child(4) a:hover {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .navigation-box ul li:nth-child(5) a {
+            border-color: #d35400;
+            color: #d35400;
+        }
+        .navigation-box ul li:nth-child(5) a:hover {
+            background: linear-gradient(135deg, #f39c12, #d35400);
+        } */
+        
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-light-dark);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .contact-form h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Experience Section Styles */
+        #experience .experience-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #experience ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            display: inline-block;
+        }
+        
+        #experience ul li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        
+        #experience ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        /* Bottom Navigation Styles */
+        .bottom-navigation {
+            display: flex;
+            justify-content: center;
+            background-color: var(--background-light-dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .bottom-navigation ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .bottom-navigation ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .bottom-navigation ul li a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Portfolio Logo Styles */
+        .portfolio-logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .portfolio-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-logo-icon:hover {
+            transform: rotate(360deg);
+        }
+        
+        .portfolio-logo-text {
+            margin-left: 10px;
+            color: var(--text-light);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Resume Button Styles */
+        .resume-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #4a90e2, #50c878);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .resume-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-logo">
+        <div class="portfolio-logo-icon">BM</div>
+        <div class="portfolio-logo-text">Bikram's Portfolio</div>
+    </div>
+    <div class="container">
+        <div class="navigation-box">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+            <a href="https://github.com/bikram73" target="_blank" class="github-profile-btn">GitHub Profile</a>
+        </div>
+        <header>
+            <div class="header-content" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="profile-circle">
+                    <img src="BIKRAM.jpg" alt="Bikram Manna" class="profile-image">
+                </div>
+                <h1>Hi, I am Bikram Manna</h1>
+                <p>As a Computer Science and Engineering student, I am captivated by the boundless opportunities the tech world presents. I thrive on solving complex problems, embracing new challenges, and exploring innovative solutions. My journey is driven by a strong passion for continuous learning and an insatiable curiosity for emerging technologies. I am dedicated to honing my skills and contributing to meaningful projects that make a positive impact on the world.</p>
+                <a href="path/to/your/resume.pdf" target="_blank" class="resume-btn">Download Resume</a>
+            </div>
+        </header>
+
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <p>Here are some of my skills on which I have been working.</p><br><br>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-content">
+                        <h3>Programming Languages</h3>
+                        <ul>
+                            <li><img src="https://img.icons8.com/color/48/000000/python.png" alt="Python" class="skill-inline-logo"> Python</li>
+                            <li><img src="https://img.icons8.com/color/48/000000/c-programming.png" alt="C" class="skill-inline-logo"> C</li>
+                            <li><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png" alt="Java" class="skill-inline-logo"> Java</li>
+                            <li><img src="https://img.icons8.com/color/48/000000/html-5.png" alt="HTML5" class="skill-inline-logo"> HTML</li>
+                            <li><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS3" class="skill-inline-logo"> CSS</li>
+                            <li><img src="https://img.icons8.com/external-soft-fill-juicy-fish/48/000000/external-sql-coding-and-development-soft-fill-soft-fill-juicy-fish.png" alt="SQL Database" class="skill-inline-logo"> SQL Database</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-content">
+                        <h3>Additional Skills</h3>
+                        <ul>
+                            <li><img src="https://img.icons8.com/color/48/000000/ms-excel.png" alt="Microsoft Excel" class="skill-inline-logo"> Microsoft Excel</li>
+                            <li><img src="https://img.icons8.com/color/48/000000/ms-word.png" alt="Microsoft Word" class="skill-inline-logo"> MS Word</li>
+                            <li><img src="https://img.icons8.com/color/48/000000/ms-powerpoint.png" alt="Microsoft PowerPoint" class="skill-inline-logo"> MS PowerPoint</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+            <div class="experience-content">
+                <ul>
+                    <li>Developed a Student Database Application using Python Django, with a responsive frontend (HTML5, CSS3) and secure CRUD operations.</li>
+                    <li>Designed a Brahmi to Kannada Image Text Translation System using Python, OpenCV, and Tesseract for OCR and script mapping.</li>
+                    <li>Built a Facial Recognition and Attendance System with real-time recognition, object detection, and movement tracking using TensorFlow and OpenCV.</li>
+                    <li>Created a Cyber Security Management System featuring RBAC, encryption, threat detection, and penetration testing with OWASP ZAP and Wireshark.</li>
+                    <li>Proficient in Python, C, Java, SQL, and Microsoft Office tools (Excel, Word, PowerPoint).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Cyber Security Management System</h3>
+                <p>Developed a robust system to safeguard sensitive data and protect against cyber threats. Key features include role-based access control (RBAC), real-time threat detection, incident management, and advanced encryption standards (AES). Technologies used include Python (Flask/Django), React.js, MySQL/MongoDB, and tools like OWASP ZAP and Wireshark. The system enhanced organizational security, reducing vulnerabilities and improving threat response efficiency.</p>
+            </div>
+            <div class="project">
+                <h3>Facial Recognition and Attendance System</h3>
+                <p>Facial Recognition and Attendance System
+                    Designed and implemented an advanced computer vision system leveraging facial recognition for automated attendance tracking. Key features include real-time facial recognition, text detection for verifying ID cards, object detection to monitor unauthorized items, and movement detection to ensure security and accurate attendance logging. The system utilized technologies like OpenCV, Python, and TensorFlow for robust performance and seamless integration into existing workflows.</p>
+            </div>
+            <div class="project">
+                <h3>Student Database Application</h3>
+                <p>Student Database Application
+                    Created a comprehensive student database application using the Python Django framework. The application features a user-friendly frontend with HTML and CSS and a robust backend for managing student records. Key functionalities include secure data storage, CRUD operations for student profiles, search and filter options, and role-based access for administrators and users. The system ensures efficient handling of large datasets while maintaining data integrity and security.</p>
+            </div>
+            <div class="project">
+                <h3>Brahmi to Kannada Image Text Translation Project</h3>
+                <p>Developed an advanced image-to-text translation system to convert Brahmi script in images into modern Kannada text. The project utilized Optical Character Recognition (OCR) techniques with Python libraries like OpenCV and Tesseract for script detection and recognition. A custom mapping algorithm translated recognized Brahmi characters into Kannada. This project is a valuable tool for historians and linguists, enabling efficient transcription of ancient manuscripts while preserving cultural and linguistic heritage.</p>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div class="education">
+                <h3>BMS Institute of Technology</h3>
+                <p>2023 - present</p><br>
+                <p>I am currently pursuing a Bachelor's degree in Computer Science and Engineering at BMS Institute of Technology and Management,Bangalore.</p>
+            </div>
+            <div class="education">
+                <h3>Raman Polytechnic</h3>
+                <p>2020 - 2023</p><br>
+                <p>I completed my class Dimploma in RAman Polytechnic, where I studied Computer Science and Engineering</p>
+            </div>
+            <div class="education">
+                <h3>South And English High Public School</h3>
+                <p>I completed my class 10 education.</p>
+            </div>
+        </section>
+
+        <section id="languages" class="section">
+            <h2>Languages</h2>
+            <div class="skill-category">
+                <div class="skill-content">
+                    <h3>Spoken Languages</h3>
+                    <ul>
+                        <li>English</li>
+                        <li>Kannada</li>
+                        <li>Hindi</li>
+                        <li>Bengali</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me for any questions or opportunities!</p>
+            <div class="contact-form">
+                <h3>Email Me 🚀</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+        
+        <div class="bottom-navigation">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="https://github.com/bikram73" target="_blank">GitHub Profile</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p> 2024 Bikram Manna. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple form submission handler (client-side only)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+    </script>
+</body>
+</html>
